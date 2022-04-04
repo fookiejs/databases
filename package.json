@@ -1,0 +1,28 @@
+{
+  "name": "databases",
+  "version": "0.0.0",
+  "description": "Fookie JS dDatabase plugin.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fookiejs/databases.git"
+  },
+  "keywords": [
+    "databases",
+    "plugin"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fookiejs/databases/issues"
+  },
+  "homepage": "https://github.com/fookiejs/databases#readme",
+  "dependencies": {
+    "mongoose": "^6.2.9",
+    "pg": "^8.7.3",
+    "sequelize": "^6.18.0"
+  }
+}
