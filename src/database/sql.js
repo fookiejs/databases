@@ -6,7 +6,59 @@ module.exports = function (ctx) {
     });
     await ctx.database({
         name: "pg",
-        types: {},
+        types: {
+            string: {
+                type: DataTypes.STRING
+            },
+            char: {
+                type: DataTypes.CHAR
+            },
+            text: {
+                type: DataTypes.TEXT
+            },
+            bigint: {
+                type: DataTypes.BIGINT
+            },
+            float: {
+                type: DataTypes.FLOAT
+            },
+            real: {
+                type: DataTypes.REAL
+            },
+            double: {
+                type: DataTypes.DOUBLE
+            },
+            decimal: {
+                type: DataTypes.DECIMAL
+            },
+            boolean: {
+                type: DataTypes.BOOLEAN
+            },
+            time: {
+                type: DataTypes.TIME
+            },
+            date: {
+                type: DataTypes.DATE
+            },
+            dateonly: {
+                type: DataTypes.DATEONLY
+            },
+            json: {
+                type: DataTypes.JSON
+            },
+            jsonb: {
+                type: DataTypes.JSONB
+            },
+            blob: {
+                type: DataTypes.BLOB
+            },
+            range: {
+                type: DataTypes.RANGE
+            },
+            uuidv4: {
+                type: DataTypes.UUIDV4
+            },
+        },
         pk: "id",
         connect: async function (config) {
         },
