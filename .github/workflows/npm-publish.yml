@@ -26,6 +26,8 @@ jobs:
           node-version: 16
           registry-url: https://registry.npmjs.org/
       - run: npm version minor
+      - run: git config --global user.email "seyitumutbicer@gmail.com"
+      - run: git config --global user.name "Seyit Umut Biçer"
       - run: git commit -m "Automated version update"
       - run: git push origin main
       - run: npm ci
