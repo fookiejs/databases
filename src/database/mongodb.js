@@ -35,8 +35,8 @@ module.exports = async function (ctx) {
                 controller: ctx.lodash.isArray
             },
         },
-        connect: async function () {
-            await mongoose.connect(...arguments);
+        connect: async function (setting) {
+            await mongoose.connect(setting.url);
         },
         disconnect: async function () {
             //await mongoose.disconnect();

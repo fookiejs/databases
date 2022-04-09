@@ -1,15 +1,15 @@
 const { Sequelize, DataTypes } = require('sequelize');
 
 module.exports = async function (ctx) {
-    let setting = ctx.local.get("setting", "pg_connection").value
-    const sequelize = new Sequelize(`postgres://${setting.user}:${setting.password}@${setting.host}/${setting.database}`, {
+    let setting = ctx.local.get("setting", "postgresql_connection").value
+    const sequelize = new Sequelize(setting.url, {
         define: {
             freezeTableName: true
         }
     })
     await sequelize.authenticate();
     const database = {
-        name: "pg",
+        name: "postgresql",
         types: {
             string: {
                 type: DataTypes.STRING

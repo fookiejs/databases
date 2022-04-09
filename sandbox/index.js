@@ -2,22 +2,26 @@
 
     const fookie = require("../../core")
     await fookie.init()
+    /*
     await fookie.setting({
-        name: "pg_connection",
+        name: "postgresql_connection",
         value: {
-            host: "127.0.0.1:5432",
-            database: "fookie",
-            user: "guest",
-            password: "guest"
+           url:`postgres://guest:guest@127.0.0.1/fookie`
         }
     })
-    await fookie.use(require("../").pg)
+    */
+    await fookie.setting({
+        name: "mongodb_connection",
+        value: { url: "mongodb://127.0.0.1/fookie" }
+    })
+    // await fookie.use(require("../").postgresql)
+    await fookie.use(require("../").mongodb)
     await fookie.use(require("../../server"))
     await fookie.listen(3002)
 
     await fookie.model({
-        name: "test_pg",
-        database: "pg",
+        name: "test_db",
+        database: "mongodb",
         schema: {
             msg: {
                 type: "string",
@@ -26,12 +30,13 @@
         }
     })
 
+
+
     let res = await fookie.run({
-        model: "test_pg",
+        model: "test_db",
         method: "read",
         query: {
             filter: {
-
             }
         }
     })
