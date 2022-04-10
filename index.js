@@ -4,6 +4,6 @@ module.exports.mongodb = async function (ctx) {
 }
 
 module.exports.postgresql = async function (ctx) {
-    await ctx.use(require('./src/database/pg.js'));
+    await ctx.use(require('./src/database/postgresql.js'));
 }
 
