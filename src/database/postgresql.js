@@ -12,37 +12,40 @@ module.exports = async function (ctx) {
         name: "postgresql",
         types: {
             string: {
-                type: DataTypes.STRING
+                type: DataTypes.STRING,
+                controller: ctx.lodash.isString
             },
             integer: {
-                type: DataTypes.INTEGER
+                type: DataTypes.INTEGER,
+                controller: ctx.lodash.isNumber,
             },
             char: {
-                type: DataTypes.CHAR
+                type: DataTypes.CHAR,
             },
             text: {
-                type: DataTypes.TEXT
+                type: DataTypes.TEXT,
             },
             bigint: {
-                type: DataTypes.BIGINT
+                type: DataTypes.BIGINT,
             },
             float: {
-                type: DataTypes.FLOAT
+                type: DataTypes.FLOAT,
             },
             real: {
-                type: DataTypes.REAL
+                type: DataTypes.REAL,
             },
             double: {
-                type: DataTypes.DOUBLE
+                type: DataTypes.DOUBLE,
             },
             decimal: {
-                type: DataTypes.DECIMAL
+                type: DataTypes.DECIMAL,
             },
             boolean: {
-                type: DataTypes.BOOLEAN
+                type: DataTypes.BOOLEAN,
+                controller: ctx.lodash.isBoolean,
             },
             time: {
-                type: DataTypes.TIME
+                type: DataTypes.TIME,
             },
             date: {
                 type: DataTypes.DATE

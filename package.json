@@ -21,6 +21,8 @@
   },
   "homepage": "https://github.com/fookiejs/databases#readme",
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.82.0",
+    "aws-sdk": "^2.1126.0",
     "mongoose": "^6.2.9",
     "pg": "^8.7.3",
     "sequelize": "^6.18.0"
