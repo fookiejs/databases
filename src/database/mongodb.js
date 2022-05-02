@@ -42,6 +42,7 @@ module.exports = async function (ctx) {
             //await mongoose.disconnect();
         },
         modify: async function (model) {
+            mongoose.models = {}
             let schema = {};
             for (let f in model.schema) {
                 schema[f] = {};

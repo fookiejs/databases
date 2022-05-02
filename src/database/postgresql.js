@@ -87,8 +87,8 @@ module.exports = async function (ctx) {
                 let res = await MDL.findAll({
                     where: payload.query.filter,
                     attributes: payload.query.attributes,
-                    limit: payload.query.limit,
-                    offset: payload.query.offset,
+                    limit: payload.projection.limit,
+                    offset: payload.projection.offset,
                 });
                 payload.response.data = res;
             }

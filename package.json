@@ -1,6 +1,6 @@
 {
   "name": "fookie-databases",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Fookie JS database plugin.",
   "main": "index.js",
   "scripts": {
