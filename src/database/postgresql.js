@@ -82,7 +82,6 @@ module.exports = async function (ctx) {
                 new_schema[field] = database.types[model.schema[field].type]
             }
 
-            console.log(new_schema);
             const MDL = sequelize.define(model.name, new_schema, {});
             await sequelize.sync({ alter: true });
 

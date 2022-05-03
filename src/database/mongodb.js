@@ -18,7 +18,7 @@ module.exports = async function (ctx) {
     })
 
 
-    let res = await ctx.database({
+    await ctx.database({
         name: "mongodb",
         pk: "_id",
         types: ["any", "_id", "object", "string", "number", "boolean", "array"],
@@ -36,7 +36,7 @@ module.exports = async function (ctx) {
                 if (typeof model.schema[f].relation == "string") {
                     model.schema[f].type = "_id";
                 }
-                if (!ctx.lodash.keys(this.types).includes(model.schema[f].type)) {
+                if (!this.types.includes(model.schema[f].type)) {
                     throw Error(`Invalid Type: ${model.schema[f].type} Model: ${model.name}`);
                 }
                 schema[f].type = map[model.schema[f].type]
@@ -65,5 +65,4 @@ module.exports = async function (ctx) {
             }
         }
     })
-    console.log(res);
 }
