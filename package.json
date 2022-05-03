@@ -1,6 +1,6 @@
 {
   "name": "fookie-databases",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Fookie JS database plugin.",
   "main": "index.js",
   "scripts": {
@@ -23,8 +23,11 @@
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.82.0",
     "aws-sdk": "^2.1126.0",
+    "install": "^0.13.0",
     "mongoose": "^6.2.9",
+    "npm": "^8.8.0",
     "pg": "^8.7.3",
-    "sequelize": "^6.18.0"
+    "sequelize": "^6.18.0",
+    "validator": "^13.7.0"
   }
 }

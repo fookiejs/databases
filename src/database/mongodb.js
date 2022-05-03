@@ -1,40 +1,27 @@
 const mongoose = require("mongoose")
-
+const map = {
+    any: mongoose.Schema.Types.Mixed,
+    _id: mongoose.Schema.Types.ObjectId,
+    object: mongoose.Schema.Types.Mixed,
+    string: mongoose.Schema.Types.String,
+    number: mongoose.Schema.Types.Number,
+    boolean: mongoose.Schema.Types.Boolean,
+    array: mongoose.Schema.Types.Array,
+}
 module.exports = async function (ctx) {
-    await ctx.database({
+    await ctx.type({
+        name: "_id",
+        controller: function (v) {
+            return ctx.lodash.isString
+        },
+        mocks: ["05040520-cae1-11ec-9d64-0242ac120002"]
+    })
+
+
+    let res = await ctx.database({
         name: "mongodb",
         pk: "_id",
-        url: "",
-        types: {
-            any: {
-                type: mongoose.Schema.Types.Mixed,
-                controller: () => true
-            },
-            _id: {
-                type: mongoose.Schema.Types.ObjectId,
-                controller: ctx.lodash.isString
-            },
-            object: {
-                type: mongoose.Schema.Types.Mixed,
-                controller: ctx.lodash.isObject
-            },
-            string: {
-                type: mongoose.Schema.Types.String,
-                controller: ctx.lodash.isString
-            },
-            number: {
-                type: mongoose.Schema.Types.Number,
-                controller: ctx.lodash.isNumber
-            },
-            boolean: {
-                type: mongoose.Schema.Types.Boolean,
-                controller: ctx.lodash.isBoolean
-            },
-            array: {
-                type: mongoose.Schema.Types.Array,
-                controller: ctx.lodash.isArray
-            },
-        },
+        types: ["any", "_id", "object", "string", "number", "boolean", "array"],
         connect: async function (setting) {
             await mongoose.connect(setting.url);
         },
@@ -52,7 +39,7 @@ module.exports = async function (ctx) {
                 if (!ctx.lodash.keys(this.types).includes(model.schema[f].type)) {
                     throw Error(`Invalid Type: ${model.schema[f].type} Model: ${model.name}`);
                 }
-                schema[f].type = this.types[model.schema[f].type].type;
+                schema[f].type = map[model.schema[f].type]
             }
             let Model = mongoose.model(model.name, new mongoose.Schema(schema, { versionKey: false }));
 
@@ -78,4 +65,5 @@ module.exports = async function (ctx) {
             }
         }
     })
+    console.log(res);
 }
