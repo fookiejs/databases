@@ -37,16 +37,4 @@
             }
         }
     })
-
-
-
-    let res = await fookie.run({
-        model: "test_db",
-        method: "read",
-        query: {
-            filter: {
-            }
-        }
-    })
-    console.log(res);
 })()

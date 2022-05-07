@@ -16,13 +16,12 @@ module.exports = async function (ctx) {
         },
         mocks: ["05040520-cae1-11ec-9d64-0242ac120002"]
     })
-
-
-    await ctx.database({
+    const setting = ctx.local.get("setting", "mongodb_connection").value
+    let res = await ctx.database({
         name: "mongodb",
         pk: "_id",
-        types: ["any", "_id", "object", "string", "number", "boolean", "array"],
-        connect: async function (setting) {
+        types: ["_id", "object", "string", "number", "boolean", "array"],
+        connect: async function () {
             await mongoose.connect(setting.url);
         },
         disconnect: async function () {
