@@ -43,7 +43,7 @@ module.exports = async function (ctx) {
             let Model = mongoose.model(model.name, new mongoose.Schema(schema, { versionKey: false }));
 
             model.methods.read = async function (payload, ctx, state) {
-                let res = await Model.find(payload.query.filter, payload.query.attributes, payload.query.projection).lean();
+                let res = await Model.find(payload.query.filter, ["_id"].concat(payload.query.attributes), payload.query.projection).lean();
                 payload.response.data = res;
             }
             model.methods.create = async function (payload, ctx, state) {
