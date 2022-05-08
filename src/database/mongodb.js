@@ -48,7 +48,7 @@ module.exports = async function (ctx) {
             }
             model.methods.create = async function (payload, ctx, state) {
                 let res = await Model.create(payload.body);
-                payload.response.data = ctx.lodash.pick(res, payload.query.attributes)
+                payload.response.data = ctx.lodash.pick(res, ["_id"].concat(payload.query.attributes))
             }
             model.methods.delete = async function (payload, ctx, state) {
                 let res = await Model.deleteMany(payload.query.filter);
