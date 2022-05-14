@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const map = {
     any: mongoose.Schema.Types.Mixed,
-    _id: mongoose.Schema.Types.ObjectId,
+    _id: mongoose.Schema.Types.String,
     object: mongoose.Schema.Types.Mixed,
     string: mongoose.Schema.Types.String,
     number: mongoose.Schema.Types.Number,
@@ -44,11 +44,16 @@ module.exports = async function (ctx) {
 
             model.methods.read = async function (payload, ctx, state) {
                 let res = await Model.find(payload.query.filter, ["_id"].concat(payload.query.attributes), payload.query.projection).lean();
-                payload.response.data = res;
+                payload.response.data = res.map(function (r) {
+                    return {
+                        ...r, _id: r._id.toString()
+                    }
+                })
             }
             model.methods.create = async function (payload, ctx, state) {
                 let res = await Model.create(payload.body);
                 payload.response.data = ctx.lodash.pick(res, ["_id"].concat(payload.query.attributes))
+                payload.response.data._id = payload.response.data._id.toString()
             }
             model.methods.delete = async function (payload, ctx, state) {
                 let res = await Model.deleteMany(payload.query.filter);
