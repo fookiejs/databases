@@ -22,7 +22,8 @@ module.exports = async function (ctx) {
         pk: "_id",
         types: ["_id", "object", "string", "number", "boolean", "array"],
         connect: async function () {
-            await mongoose.connect(setting.url);
+            await mongoose.connect(setting.url)
+                .catch(err => console.log(err))
         },
         disconnect: async function () {
             //await mongoose.disconnect();
